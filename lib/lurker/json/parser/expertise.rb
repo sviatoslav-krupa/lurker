@@ -13,7 +13,7 @@ module Lurker
         def type_defined?(hash)
           return false unless hash.is_a?(Hash)
 
-          hash.key?(Json::TYPE) && Json::PRIMITIVES.include?(hash[Json::TYPE])
+          hash.key?(Json::TYPE) && valid_type?(hash[Json::TYPE])
         end
 
         def type_supposed?(hash)
@@ -22,6 +22,11 @@ module Lurker
           hash.key?(Json::ANYOF) || hash.key?(Json::ALLOF) || hash.key?(Json::ONEOF) ||
           hash.key?(Json::ITEMS) || hash.key?(Json::PROPERTIES) ||
           hash.key?(Json::REF)
+        end
+
+        def valid_type?(type)
+          return Json::PRIMITIVES.include?(type) unless type.is_a?(Array)
+          !type.empty? && type.all? { |t| Json::PRIMITIVES.include?(t) }
         end
       end
     end
