@@ -46,7 +46,7 @@ module Lurker
         path_info: request.path_info,
         method: request.verb,
       }
-      unless request.query_params.empty?
+      unless request.query_params.blank?
         extensions[:query_params] = request.query_params
       end
       if suffix.present?
