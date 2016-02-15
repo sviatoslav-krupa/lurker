@@ -22,8 +22,8 @@ module Lurker
         path_info: request.path_info,
         path_params: request.env["#{PREFIX}.path_parameters"].stringify_keys.except('format'),
         query_params: request.env["#{PREFIX}.query_parameters"],
-        payload: request.env["#{PREFIX}.request_parameters"].merge(
-          request.env["#{PREFIX}.query_parameters"]
+        payload: request.env.fetch("#{PREFIX}.request_parameters", {}).merge(
+          request.env.fetch("#{PREFIX}.query_parameters", {})                                                              
         ).stringify_keys.except('action', "controller", 'format', '_method')
       )
     end
