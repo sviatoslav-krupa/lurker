@@ -16,6 +16,7 @@ module Lurker
     property :query_params, default: {}
 
     def self.build_from_action_dispatch(request)
+      request.path_info = URI(request.fullpath).path unless request.path_info
       new(
         verb: request.method,
         endpoint_path: route_name(request),
