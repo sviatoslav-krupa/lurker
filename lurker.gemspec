@@ -25,13 +25,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency("thor", "~> 0.19")
   spec.add_dependency("sinatra", ">= 1.4", "< 2.1")
   spec.add_dependency("hashie", ">= 3.0")
-  spec.add_dependency("activesupport", ">= 3.2", "< 5.1")
+  spec.add_dependency("activesupport", ">= 3.2", "< 5.2")
 
   # testing
   spec.add_development_dependency("psych", "~> 2.0")
   spec.add_development_dependency("bundler", ">= 1.7.11")
   spec.add_development_dependency("rack-cors", "~> 0.2")
-  spec.add_development_dependency("rails", ">= 3.2", "< 5.1")
+  spec.add_development_dependency("rails", ">= 3.2", "< 5.2")
   spec.add_development_dependency("rake", "~> 10.2")
   spec.add_development_dependency("rspec", ">= 2.14.0")
   spec.add_development_dependency("cucumber", "~> 1.3")
