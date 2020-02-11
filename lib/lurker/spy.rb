@@ -16,10 +16,16 @@ module Lurker
       @block = block
 
       @service = if defined?(Rails)
-        Service.new(Rails.root.join(DEFAULT_SERVICE_PATH).to_s, Rails.application.class.parent_name)
-      else
-        Service.default_service
-      end
+                   module_parent_name = if Rails::VERSION::MAJOR >= 6
+                                          Rails.application.class.module_parent_name
+                                        else
+                                          Rails.application.class.parent_name
+                                        end
+
+                   Service.new(Rails.root.join(DEFAULT_SERVICE_PATH).to_s, module_parent_name)
+                 else
+                   Service.default_service
+                 end
     end
 
     def call
